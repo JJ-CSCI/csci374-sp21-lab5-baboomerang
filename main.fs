@@ -12,7 +12,10 @@ let rec prod (t:Tree) :int =
     | _ -> 1  //identity
 
 let rec map (f:int->int) (t:Tree) :Tree =
-    t
+    match t with
+    | Node (left, right) -> map f left * map f right
+    | Leaf l -> f l
+    | _ -> f 0 //not sure what to do here
 
 let rec foldStr (nf:string -> string -> string) (lf:int->string) (t:Tree) :string =
     ""
